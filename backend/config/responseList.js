@@ -6,7 +6,8 @@ export const responseList = {
     NOT_FOUND: "Endpoint leads to nowhere!",
     USER_NOT_FOUND: "User not found!",
     USER_PASSWORD_ERROR: "User password incorrect!",
-    NOT_TOKEN: "No token in header",
+    USER_EXISTED : "User existed, please change username",
+    NO_TOKEN: "No token in header",
     INVALID_TOKEN: "Invalid token",
     SOMETHING_WRONG: "Something went wrong"
   };

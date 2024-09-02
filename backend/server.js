@@ -14,8 +14,8 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({extended : true}))
 
-server.use("/user",userController)
-server.use("/todo", todoController)
+server.use("/users",userController)
+server.use("/todos", todoController)
 
 mongoose.connect(process.env.MONGODB_URI).then(()=> {
     console.log("MongoDB connected")
