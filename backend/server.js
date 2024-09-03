@@ -2,8 +2,8 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import mongoose from "mongoose"
-import todoController from "./controllers/todoController.js"
-import userController from "./controllers/userController.js"
+import usersRoutes from "./routes/users.js"
+import todosRoutes from "./routes/todos.js"
 
 
 const server = express()
@@ -14,8 +14,8 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({extended : true}))
 
-server.use("/users",userController)
-server.use("/todos", todoController)
+server.use("/api/user",usersRoutes)
+server.use("/api/todos", todosRoutes)
 
 mongoose.connect(process.env.MONGODB_URI).then(()=> {
     console.log("MongoDB connected")

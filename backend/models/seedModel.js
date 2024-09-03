@@ -3,6 +3,7 @@ import mongoose,{Schema} from "mongoose";
 const todoSchema = new Schema ({
     title : {require : true , type : String},
     description : {require : true, type : String},
+    isCompleted : {require : true, type : Boolean},    
     createdBy : {type: Schema.Types.ObjectId, ref : "User"},
 },{timestamps : true})
 

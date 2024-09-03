@@ -1,21 +1,17 @@
-import { Router } from "express";
 import { Todo } from "../models/seedModel.js";
 import { responseList } from "../config/responseList.js";
-import { authentication } from "../middlewares/authentication.js";
 
-const router = Router()
 
-//get all todos from database
-router.get("/", async(req, res)=> {
+export const getTodo = async (req, res) => {
     const allTodo = await Todo.find()
     if(!allTodo || allTodo.length === 0) {
         return res.status(400).json({"Message" : responseList.BAD_REQUEST})
     }
     return res.status(200).json({allTodo})
-})
+}
 
-//create new todos
-router.post("/",authentication, async (req, res)=> {
+
+export const createTodo = async (req, res) => {
     const todo = new Todo({
         ...req.body,
         createdBy : req.user._id
@@ -25,10 +21,9 @@ router.post("/",authentication, async (req, res)=> {
     }
     await todo.save()
     return res.status(201).json({"Message" : responseList.CREATED_SUCCESS})
-})
+}
 
-//edit todos
-    router.put("/:id", authentication, async (req, res)=> {
+export const editTodo = async(req, res) => {
     try{
         const todoId = req.params.id
         if(!todoId){
@@ -45,10 +40,9 @@ router.post("/",authentication, async (req, res)=> {
         console.log(e)
         return res.status(400).json({"Message" : responseList.BAD_REQUEST})
     }
-})
+}
 
-//delete todos
-router.delete("/:id", authentication, async (req, res)=> {
+export const deleteTodo = async(req, res) => {
     try{
         if(!req.params.id ){
             return res.status(400).json({"Message" : responseList.BAD_REQUEST})
@@ -62,6 +56,4 @@ router.delete("/:id", authentication, async (req, res)=> {
         console.log(e)
         return res.status(400).json({"Message" : responseList.BAD_REQUEST})
     }
-})
-
-export default router
+}
