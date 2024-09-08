@@ -14,14 +14,13 @@ export const authentication = async (req, res, next) => {
         }
         const token = bearerToken.split(" ")[1]
         const decodedToken = jwt.verify(token, process.env.SECRET_PHASE)
-
+        
         if(!decodedToken){
             return res.status(401).json({"Message" : responseList.INVALID_TOKEN})
         }
         req.user = await User.findById(decodedToken.user_id)
         next()
     }catch(e){
-        console.log(e)
         return res.status(400).json({"Message" : responseList.SOMETHING_WRONG})
     }
 }

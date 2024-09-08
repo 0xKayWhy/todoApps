@@ -1,36 +1,42 @@
 import { useEffect, useState } from "react"
+import { useTodoContext } from "../hooks/useTodoContext"
+import { TodoDetails } from "../components/TodoDetail"
+import { TodoForm } from "../components/TodoForm"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 export const Home = () => {
 
-    const [ todos , setTodos] = useState([])
+    const {todo,dispatch} = useTodoContext()
     const [error, setError] = useState("")
+    const {user} = useAuthContext()
 
     useEffect(()=> {
         const fetchTodo = async () => {
-            const response = await fetch("/api/todos")
+            const response = await fetch("/api/todos",{
+                headers : {"Authorization" : `Bearer ${user.token}`}
+            })
             const json = await response.json()
             if(response.ok){
-                setTodos(json)
+                dispatch({type:"SET_TODOS", payload : json})
             }
             if(!response.ok){
-                setError(response.error)
+                setError(response.Message)
             }
         }
         fetchTodo()
     },[])
 
 
-
-
     return (
-        <div>
-            Home
-            <div>
-                {todos && todos.map((todo )=> (
-                    todo.title
+        <div className="home container">
+                <div >Pending</div>
+            <div className="todos">
+                {todo && todo.map((td )=> (
+                    <TodoDetails key={td._id} todo={td}/>
                 ))}
-                {error && error}
+            <TodoForm/>
             </div>
+            {error && <div className="error">{error}</div>}
         </div>
     )
 }
