@@ -9,6 +9,7 @@ export const Home = () => {
     const {todo,dispatch} = useTodoContext()
     const [error, setError] = useState("")
     const {user} = useAuthContext()
+    const status = ["Pending", "Completed"]
 
     useEffect(()=> {
         const fetchTodo = async () => {
@@ -24,18 +25,29 @@ export const Home = () => {
             }
         }
         fetchTodo()
-    },[])
+    },[dispatch,user.token])
 
+    const completedTodo = todo.filter((td)=> td.isCompleted === true)
+    const pendingTodo = todo.filter((td)=> td.isCompleted === false)
 
     return (
         <div className="home container">
                 <div >Pending</div>
             <div className="todos">
-                {todo && todo.map((td )=> (
-                    <TodoDetails key={td._id} todo={td}/>
+                {todo && pendingTodo.map((td )=> (
+                    <TodoDetails key={td._id} todos={td} status={"Pending"}/>
                 ))}
+                
             <TodoForm/>
             </div>
+                <div>Completed</div>
+                <div className="todos">
+                {todo && completedTodo.map((td )=> (
+                    <TodoDetails key={td._id} todos={td} status={"Completed"}/>
+                ))}
+                
+            </div>
+            
             {error && <div className="error">{error}</div>}
         </div>
     )

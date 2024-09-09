@@ -250,7 +250,7 @@ nav a {
   flex-direction: column;
 }
 
-.todo__details:hover i{
+.todo__details:hover i, .todo__details:hover button{
   visibility: visible;
 }
 
@@ -266,6 +266,12 @@ nav a {
 .todo__details input:focus,textarea:focus {
   outline: none;
   border-bottom: 1px solid black;
+}
+
+.todo__details button {
+  font-size: 10px;
+  margin: 0 auto;
+  margin-bottom: 5px;
 }
 
 .todo__title{
@@ -299,10 +305,6 @@ nav a {
   margin: 0;
 }
 
-.delete {
-  cursor: pointer;
-}
-
 .todo__description i {
   position: absolute;
   top: 0;
@@ -310,14 +312,35 @@ nav a {
   visibility: hidden;
 }
 
+.todo__description button {
+  visibility: hidden;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+
 .create__todo {
   margin: 1rem;
-  margin-top: 0;
+  margin-top: auto;
+  width: 180px;
+  height: 220px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.create__todo:hover {
+  color: rgba(0,0,0,0.5);
+  cursor: pointer;
   box-shadow: 2px;
   width: 180px;
   height: 220px;
   border-radius: 10px;
-
+  background-color: #eae8e8;
 }
 
 
@@ -377,3 +400,10 @@ form button {
     cursor: pointer;
     margin: 1rem;
   } 
+
+  /* error */
+  .error {
+    color: rgb(233, 105, 105);
+    font-size: 10px;
+    margin: 0 auto;
+  }

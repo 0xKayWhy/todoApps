@@ -3,7 +3,7 @@ import { responseList } from "../config/responseList.js";
 
 
 export const getTodo = async (req, res) => {
-    const allTodo = await Todo.find({createdBy : req.user._id}).sort({createdAt: -1})
+    const allTodo = await Todo.find({createdBy : req.user._id}).sort({updatedAt: -1})
     if(!allTodo || allTodo.length === 0) {
         return res.status(400).json({"Message" : responseList.BAD_REQUEST})
     }
@@ -15,13 +15,14 @@ export const createTodo = async (req, res) => {
     const {title, description} = req.body
 
     if(!description || !title) {
-        return res.status(400).json({Message : "All fields is required"})
+        return res.status(400).json({Message : responseList.ALL_FIELD_REQUIRED})
     }
 
     const todo = new Todo({
         ...req.body,
         createdBy : req.user._id
     })
+    
     if(!todo){
         return res.status(400).json({"Message" : responseList.BAD_REQUEST})
     }
@@ -35,16 +36,21 @@ export const editTodo = async(req, res) => {
         if(!todoId){
             return res.status(400).json({"Message" : responseList.BAD_REQUEST})
         }
+        const {title, description} = req.body
+        if(!title || !description) {
+            return res.status(400).json({Message : responseList.ALL_FIELD_REQUIRED})
+        }
         const updateTodo = await Todo.findByIdAndUpdate(todoId,
         req.body,
+        { new: true, runValidators: true}
         )
         if(!updateTodo){
             return res.status(404).json({"Message" : responseList.NOT_FOUND})
         }
-        return res.status(200).json({updateTodo})
+        return res.status(200).json(updateTodo)
     }catch(e){
         console.log(e)
-        return res.status(400).json({"Message" : responseList.BAD_REQUEST})
+        return res.status(500).json({"Message" : responseList.BAD_REQUEST})
     }
 }
 
