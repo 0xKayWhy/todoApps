@@ -156,6 +156,10 @@ body {
   margin: 2rem;
 }
 
+.container h2 {
+  color: #5f7db0;
+}
+
 .pages {
   margin: 0 auto;
   max-width: 1400px;
@@ -193,7 +197,11 @@ input {
 /* navbar */
 header {
   background-color: #fff;
-  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
 header .container {
@@ -223,23 +231,59 @@ nav a {
 }
 
 /* homepage */
-.home {
+.pending__todo, .completed__todo{
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 2px 2px;
+  padding: 2rem;
 }
+
+.pending__todo {
+  background-color: #edcdcd;
+  margin-top: 9rem;
+}
+
+.completed__todo {
+  background-color: #b8e9b1;
+}
+
+
+.section__title {
+  display: flex;
+  align-items: center;
+}
+
+.section__title select{
+  margin-left: 2rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px;
+  padding: 0;
+  height: 30px;
+  font-weight:700;
+  cursor: pointer;
+
+
+}
+
+.section__title select:hover{
+  background-color: #e6dfdf;
+
+}
+
 
 .todos {
   display: flex;
   max-width: 1400px;
   margin: 1rem;
   box-shadow: 2px;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
 
 }
 
 .todo__details {
   position: relative;
   margin: 1rem;
-  margin-top: 0;
   box-shadow: 2px;
   width: 180px;
   height: 220px;
@@ -248,10 +292,12 @@ nav a {
   background-color: #eae8e8;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .todo__details:hover i, .todo__details:hover button{
-  visibility: visible;
+  opacity: 1 ;
+  transition:  all 0.5s ease-in-out;
 }
 
 
@@ -261,6 +307,7 @@ nav a {
   margin: 0;
   font-family: var(--font);
   resize: none;
+  
 }
 
 .todo__details input:focus,textarea:focus {
@@ -283,7 +330,11 @@ nav a {
 .todo__title input{
   font-weight: bold;
   font-size: 20px;
+  text-align: center;
+
 }
+
+
 
 .todo__description {
   padding: 9px;
@@ -309,11 +360,13 @@ nav a {
   position: absolute;
   top: 0;
   right: 0;
-  visibility: hidden;
+  opacity: 0;
+  transition:  all 0.3s ease-in-out;
 }
 
 .todo__description button {
-  visibility: hidden;
+  opacity: 0;
+  transition:  all 0.3s ease-in-out;
 }
 
 .delete {
@@ -323,14 +376,13 @@ nav a {
 
 .create__todo {
   margin: 1rem;
-  margin-top: auto;
   width: 180px;
   height: 220px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  transition:  all 0.2s ease-in-out;
 }
 
 .create__todo:hover {
@@ -341,6 +393,7 @@ nav a {
   height: 220px;
   border-radius: 10px;
   background-color: #eae8e8;
+  transition:  all 0.3s ease-in-out;
 }
 
 
@@ -348,8 +401,8 @@ nav a {
 /* form */
 
 form.login, form.signup {
-  max-width: 400px;
-  margin: 40px auto;
+  max-width: 350px;
+  margin: 9rem auto 40px auto;
   display: flex;
   flex-direction: column;
 }
@@ -361,6 +414,21 @@ form h3 {
 form button {
   max-width: 100px;
 }
+
+.login input,.signup input{
+  border-radius: 10px;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tryMe {
+  background-color: red;
+  color: white;
+}
+
 
 /* modal */
    .overlay {
@@ -377,7 +445,7 @@ form button {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 7rem;
+    padding: 2rem 5rem;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -392,18 +460,98 @@ form button {
   
   .modalButton button {
     background: var(--error);
-    border: 0;
     color: #fff;
+    border: 0;
     padding: 10px;
     font-family: var(--font);
     border-radius: 4px;
     cursor: pointer;
     margin: 1rem;
+    box-shadow: 2px 2px black;
   } 
+
+  .modalButton button:active {
+    box-shadow: none;
+  }
 
   /* error */
   .error {
     color: rgb(233, 105, 105);
     font-size: 10px;
     margin: 0 auto;
+  }
+
+  .formError {
+    padding: 10px;
+    background: #ffefef;
+    border: 1px solid var(--error);
+    color: var(--error);
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+
+  @media screen and (max-width:1440px) {
+  header .container{
+    justify-content: space-around;
+  }
+  }
+
+  @media screen and (max-width:992px) {
+    .section__title {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width:375px) {
+    .section__title {
+      flex-direction: column;
+    }
+
+    .section__title select{
+      margin-left: 0;
+    }
+  }
+
+  /* google style */
+  .google-style {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+  }
+  
+  .blue {
+    color: #4285F4; /* Google Blue */
+  }
+  
+  .red {
+    color: #EA4335; /* Google Red */
+  }
+  
+  .yellow {
+    color: #FBBC05; /* Google Yellow */
+  }
+  
+  .green {
+    color: #34A853; /* Google Green */
+  }
+
+  /* loader */
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid blue;
+    border-right: 8px solid green;
+    border-bottom: 8px solid red;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }

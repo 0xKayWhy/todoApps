@@ -5,7 +5,7 @@ export const ModalContent = ({onDelete,onClose}) => {
     <>
     <div className='overlay'/>
     <div className='modal'>
-        <span>Confirm to delete?</span>
+        <h3>Confirm to delete?</h3>
         <div className='modalButton'>
 
         <button onClick={onDelete}>Yes</button>

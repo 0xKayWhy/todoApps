@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTodoContext } from "../hooks/useTodoContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-export const TodoForm = () => {
+export const TodoForm = ({sorting}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
@@ -34,7 +34,7 @@ export const TodoForm = () => {
       setTitle("");
       setDescription("");
       setError(null);
-      dispatch({ type: "CREATE_TODO", payload: json.todo });
+      dispatch({ type: "CREATE_TODO", payload: json.todo, sorting });
       setAddForm(false)
       setIsHidden(true)
     }
@@ -79,6 +79,7 @@ export const TodoForm = () => {
               value={title}
               autoFocus
               required
+              maxLength={15}
             />
           </div>
           <div className="todo__description">
@@ -88,6 +89,7 @@ export const TodoForm = () => {
               value={description}
               onKeyDown={handleEnter}
               required
+              maxLength={70}
             />
             <i  onClick={handleExit} className='bx bx-x bx-sm delete'></i>
           </div>

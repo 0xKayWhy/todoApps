@@ -6,7 +6,7 @@ import { ModalContent } from './ModalContent'
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-export const TodoDetails = ({todos, status}) => {
+export const TodoDetails = ({todos, status, sorting}) => {
   const [showModal, setShowModal] = useState(false)
   const [title, setTitle] = useState(todos.title)
   const [description, setDescription] = useState(todos.description)
@@ -19,6 +19,7 @@ export const TodoDetails = ({todos, status}) => {
   useEffect(()=> {
     setTitle(todos.title)
     setDescription(todos.description)
+    setIsCompleted(todos.isCompleted)
   },[todos])
 
 
@@ -50,7 +51,6 @@ export const TodoDetails = ({todos, status}) => {
       if(title === todos.title && description === todos.description && isCompleted === todos.isCompleted ){
         return 
       }
-      console.log("run")
 
       if(!title || !description){
         setError("All field must be filled")
@@ -78,7 +78,7 @@ export const TodoDetails = ({todos, status}) => {
         const json = await response.json()
         
         if(response.ok){
-          dispatch({type : "EDIT_TODO", payload : json})
+          dispatch({type : "EDIT_TODO", payload : json, sorting})
           setError("")
         }
       } catch (err) {
@@ -115,10 +115,10 @@ export const TodoDetails = ({todos, status}) => {
   const handleEditStatus = (e) => {
     if(status === "Completed"){
       setIsCompleted(false)
-    } else {
+    } else if(status === "Pending") {
       setIsCompleted(true)
     }
-    handleEdit(e)
+    e.target.blur()
   }
 
 

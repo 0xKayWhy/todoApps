@@ -2,19 +2,23 @@ import { useLogin } from "../hooks/useLogin";
 import { useState } from "react";
 
 export const Login = () => {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const {isLoading, error, login} = useLogin()
+  const { isLoading, error, login } = useLogin();
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    login(username, password);
+  };
+
+  const guestLogin = (e) => {
     e.preventDefault()
-    login(username, password)
+    login("johnDoe","123")
   }
 
-    return (
-        <form className="signup" onSubmit={handleSubmit}>
-        <h3>Log in</h3>
+  return (
+    <form className="login" onSubmit={handleSubmit}>
+      <h3>Log in</h3>
       <label>Username : </label>
       <input
         type="text"
@@ -28,8 +32,12 @@ export const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
+      <div className="loginButton">
       <button disabled={isLoading}>Log in</button>
-      {error && <div className="error">{error}</div>}
-      </form>
-    )
-}
+      <button disabled={isLoading} className="tryMe" onClick={guestLogin}>Try me!</button>
+      </div>
+      {error && <div className="formError">{error}</div>}
+      {isLoading && <div className={isLoading? "loader" : ""}></div>}
+    </form>
+  );
+};
