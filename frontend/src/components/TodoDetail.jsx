@@ -29,7 +29,7 @@ export const TodoDetails = ({todos, status, sorting}) => {
     }
 
     try{
-      const response = await fetch (`/api/todos/${todos._id}`, {
+      const response = await fetch (`/api/v1/todos/${todos._id}`, {
         method : "DELETE",
         headers : {"Authorization" : `Bearer ${user.token}`}
       })
@@ -67,7 +67,7 @@ export const TodoDetails = ({todos, status, sorting}) => {
       }
       
       try{
-        const response = await fetch(`/api/todos/${todos._id}`, {
+        const response = await fetch(`/api/v1/todos/${todos._id}`, {
           method : "PUT",
           headers : {
             "Authorization" : `Bearer ${user.token}`,

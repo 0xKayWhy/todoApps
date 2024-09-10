@@ -17,7 +17,7 @@ export const TodoForm = ({sorting}) => {
     if (!title || !description) {
       return setError("All field is required");
     }
-    const response = await fetch("/api/todos/", {
+    const response = await fetch("/api/v1/todos/", {
       method: "POST",
 
       headers: {

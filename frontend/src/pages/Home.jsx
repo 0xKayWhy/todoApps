@@ -11,7 +11,7 @@ export const Home = () => {
 
   useEffect(() => {
     const fetchTodo = async () => {
-      const response = await fetch("/api/todos", {
+      const response = await fetch("/api/v1/todos", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const json = await response.json();
