@@ -277,7 +277,6 @@ nav a {
   margin: 1rem;
   box-shadow: 2px;
   flex-wrap: wrap;
-  justify-content: center;
 
 }
 
@@ -501,6 +500,12 @@ form button {
   @media screen and (max-width:992px) {
     .section__title {
       display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .todos {
       justify-content: center;
     }
   }

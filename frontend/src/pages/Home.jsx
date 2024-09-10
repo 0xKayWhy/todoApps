@@ -16,7 +16,7 @@ export const Home = () => {
       });
       const json = await response.json();
       if (response.ok) {
-          dispatch({ type: "SET_TODOS", payload: json, });
+          dispatch({ type: "SET_TODOS", payload: json,sorting });
       }
       if (!response.ok) {
         setError(response.Message);
