@@ -9,6 +9,7 @@ export const Home = () => {
   const [error, setError] = useState("");
   const { user } = useAuthContext();
 
+  //get data on login
   useEffect(() => {
     const fetchTodo = async () => {
       const response = await fetch("/api/v1/todos", {
@@ -25,6 +26,7 @@ export const Home = () => {
     fetchTodo();
   }, [dispatch, user.token, sorting]);
 
+  //separate to 2 different status and display using same component
   const completedTodo = todo.filter((td) => td.isCompleted === true);
   const pendingTodo = todo.filter((td) => td.isCompleted === false);
 
@@ -48,7 +50,9 @@ export const Home = () => {
         </div>
       </div>
       <div className="container completed__todo">
+      <div className="section__title">
         <h2>Completed</h2>
+      </div>
         <div className="todos">
           {todo &&
             completedTodo.map((td) => (

@@ -4,10 +4,13 @@ import { responseList } from "../config/responseList.js"
 import { User } from "../models/userModel.js"
 
 dotenv.config()
+
+//check on protected route whenever user request for additional action
 export const authentication = async (req, res, next) => {
-    //get token and verify
-    //next
+    
+    
     try{
+        //get token from client side and decode
         const bearerToken = req.headers.authorization
         if(!bearerToken){
             return res.status(401).json({"Message" : responseList.NO_TOKEN})

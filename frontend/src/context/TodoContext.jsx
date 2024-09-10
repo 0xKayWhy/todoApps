@@ -2,6 +2,8 @@ import { createContext, useReducer, useState } from "react";
 
 export const TodoContext = createContext();
 
+
+//allow to sort based on the sorting method on select
 const todoReducer = (state, action) => {
   switch (action.type) {
     case "SET_TODOS":

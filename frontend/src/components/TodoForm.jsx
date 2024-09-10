@@ -6,11 +6,13 @@ export const TodoForm = ({sorting}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
-  const [addForm, setAddForm] = useState(false);
+  const [addForm, setAddForm] = useState(false);// show a new form
   const [isHidden, setIsHidden] = useState(true)
   const { dispatch } = useTodoContext();
   const { user } = useAuthContext();
 
+
+  //add new todo
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,6 +42,7 @@ export const TodoForm = ({sorting}) => {
     }
   };
 
+  //allow user to hit enter and submit
   const handleEnter = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -47,6 +50,7 @@ export const TodoForm = ({sorting}) => {
     }
   };
 
+  //when user hit enter, return to empty state and do not submit
   const handleExit = (e) => {
     if (e.key === "Escape" || e.type === "click"){
         e.preventDefault();
@@ -57,6 +61,8 @@ export const TodoForm = ({sorting}) => {
     }
   }
 
+  //check if onBlur is still within children and display add button if user still
+  //want to add when out of focus
   const checkOnBlur = (e) => {
     if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
         setIsHidden(false);

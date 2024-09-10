@@ -6,11 +6,14 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const { isLoading, error, login } = useLogin();
 
+
+  //user login
   const handleSubmit = (e) => {
     e.preventDefault();
     login(username, password);
   };
 
+  //guest login
   const guestLogin = (e) => {
     e.preventDefault()
     login("johnDoe","johnDoe")

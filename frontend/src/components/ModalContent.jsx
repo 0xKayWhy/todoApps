@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+//modal for delete confirmation
 export const ModalContent = ({onDelete,onClose}) => {
   return (
     <>

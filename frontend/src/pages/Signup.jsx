@@ -7,7 +7,7 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const {isLoading, error, signup} = useSignup()
 
-
+  //register new user
   const handleSubmit = (e) => {
     e.preventDefault()
     signup(username,password)

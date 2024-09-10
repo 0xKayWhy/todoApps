@@ -28,6 +28,8 @@ mongoose.connect(process.env.MONGODB_URI).then(()=> {
 })
 
 const port = process.env.PORT
+
+//open file for views
 server.get("/*", (req,res) =>{
     res.sendFile(path.join(__dirname, "build", "index.html"))
 } )
