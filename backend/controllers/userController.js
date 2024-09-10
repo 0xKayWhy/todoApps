@@ -30,7 +30,7 @@ export const userSignup = async (req, res) => {
         await user.save()
 
         //send token to user after signing up
-        const token = jwt.sign({user_id : user._id}, process.env.SECRET_PHASE)
+        const token = jwt.sign({user_id : user._id}, process.env.SECRET_PHASE,{expiresIn: "1hr"})
         return res.status(201).json({"Message" : responseList.CREATED_SUCCESS, token, username})
 
     }catch(e){
@@ -55,7 +55,7 @@ export const userLogin = async (req, res) => {
         }
 
         //send token to user after login
-        const token = jwt.sign({user_id : user._id}, process.env.SECRET_PHASE)
+        const token = jwt.sign({user_id : user._id}, process.env.SECRET_PHASE,{expiresIn: "1hr"})
         res.status(200).json({token,username})
     }catch(e){
         console.log(e)
