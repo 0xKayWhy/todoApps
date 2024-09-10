@@ -9,7 +9,7 @@ export const useLogin = () => {
 
     const login = async (username, password) => {
         setIsLoading(true)
-        const response = await fetch("/api/user/login", {
+        const response = await fetch("/api/v1/user/login", {
             method : "POST",
             headers : {"Content-Type" : "application/json"},
             body : JSON.stringify({username, password})

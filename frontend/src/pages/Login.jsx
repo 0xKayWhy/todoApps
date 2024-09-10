@@ -13,7 +13,7 @@ export const Login = () => {
 
   const guestLogin = (e) => {
     e.preventDefault()
-    login("johnDoe","123")
+    login("johnDoe","johnDoe")
   }
 
   return (
