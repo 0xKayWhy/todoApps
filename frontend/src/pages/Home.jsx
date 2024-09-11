@@ -3,11 +3,13 @@ import { useTodoContext } from "../hooks/useTodoContext";
 import { TodoDetails } from "../components/TodoDetail";
 import { TodoForm } from "../components/TodoForm";
 import { useAuthContext } from "../hooks/useAuthContext";
+import {useLogout} from "../hooks/useLogout"
 
 export const Home = () => {
   const { todo, dispatch,sorting, setSorting } = useTodoContext();
   const [error, setError] = useState("");
   const { user } = useAuthContext();
+  const {logout} = useLogout()
 
   //get data on login
   useEffect(() => {
@@ -21,6 +23,7 @@ export const Home = () => {
       }
       if (!response.ok) {
         setError(response.Message);
+        logout()
       }
     };
     fetchTodo();
