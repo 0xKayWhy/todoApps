@@ -6,7 +6,7 @@ export const getTodo = async (req, res) => {
     //sort by new to old
     const allTodo = await Todo.find({createdBy : req.user._id}).sort({updatedAt: -1})
     if(!allTodo || allTodo.length === 0) {
-        return res.status(200).json({"Message" : "No todo found"})
+        return res.status(200).json([])
     }
     return res.status(200).json(allTodo)
 }

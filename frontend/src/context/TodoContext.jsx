@@ -18,15 +18,18 @@ const todoReducer = (state, action) => {
       if (action.sorting === "oldToNew") {
         return { todo: [...state.todo, action.payload] };
       }
-      return { todo: [action.payload, ...state.todo] };
+        return { todo: [action.payload, ...state.todo] };
+    
     case "EDIT_TODO":
-      const updatesData = state.todo.filter(
-        (td) => td._id !== action.payload._id
-      );
-      if (action.sorting === "oldToNew") {
-        return { todo: [...updatesData, action.payload] };
+      if(state.todo && state.todo.length > 0) {
+        const updatesData = state.todo.filter(
+          (td) => td._id !== action.payload._id
+        );
+        if (action.sorting === "oldToNew") {
+          return { todo: [...updatesData, action.payload] };
+        }
+        return { todo: [action.payload, ...updatesData] };
       }
-      return { todo: [action.payload, ...updatesData] };
     case "DELETE_TODO":
       return { todo: state.todo.filter((t) => t._id !== action.payload._id) };
     default:
