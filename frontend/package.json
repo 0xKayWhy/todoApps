@@ -1,5 +1,5 @@
 {
-  "proxy": "/",
+  "proxy": "http://localhost:3003",
   "name": "todolist",
   "version": "0.1.0",
   "private": true,

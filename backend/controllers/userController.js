@@ -13,7 +13,7 @@ export const userSignup = async (req, res) => {
         const {username, password} = req.body
 
         if(!username || !password) {
-            return res.status(400).json({Message : "All fields is required"})
+            return res.status(400).json({Message : responseList.ALL_FIELD_REQUIRED})
         }
         const existUser = await User.findOne({username})
         if(existUser){
@@ -53,9 +53,10 @@ export const userLogin = async (req, res) => {
         if(!compare){
             return res.status(400).json({"Message" : responseList.USER_PASSWORD_ERROR})
         }
-
+        
         //send token to user after login
         const token = jwt.sign({user_id : user._id}, process.env.SECRET_PHASE,{expiresIn: "1hr"})
+        console.log(token)
         res.status(200).json({token,username})
     }catch(e){
         console.log(e)

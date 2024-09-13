@@ -32,7 +32,7 @@ export const Signup = () => {
         required
       />
       <button disabled={isLoading}>Sign Up</button>
-      {error && <div className="error">{error}</div>}
+      {error && <div className="formError">{error}</div>}
     </form>
   );
 };

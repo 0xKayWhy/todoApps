@@ -30,8 +30,9 @@ export const Home = () => {
   }, [dispatch, user.token, sorting]);
 
   //separate to 2 different status and display using same component
-  const completedTodo = todo.filter((td) => td.isCompleted === true);
-  const pendingTodo = todo.filter((td) => td.isCompleted === false);
+    const completedTodo = todo.length > 0 && todo.filter((td) => td.isCompleted === true);
+    const pendingTodo = todo.length > 0 && todo.filter((td) => td.isCompleted === false);
+  
 
   return (
     <div className="container">
@@ -44,7 +45,7 @@ export const Home = () => {
           </select>
         </div>
         <div className="todos">
-          {todo &&
+          {todo.length > 0 &&
             pendingTodo.map((td) => (
               <TodoDetails key={td._id} todos={td} status={"Pending"} sorting={sorting}/>
             ))}
@@ -57,7 +58,7 @@ export const Home = () => {
         <h2>Completed</h2>
       </div>
         <div className="todos">
-          {todo &&
+          {todo.length > 0 &&
             completedTodo.map((td) => (
               <TodoDetails key={td._id} todos={td} status={"Completed"} sorting={sorting}/>
             ))}
