@@ -9,19 +9,17 @@ A full-stack Todo App built using MongoDB, Express.js, React.js, and Node.js (ME
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
 - [Setting Up the Project](#setting-up-the-project)
-- [Usage](#usage)
-- [MongoDB Setup](#mongodb-setup)
-- [Useful Links](#useful-links)
+- [Overview](#overview)
 
 ## Demo
 
-You can check the app live at: [**Live Todo App Demo**](https://your-app-url.com)
+You can check the app live at: [**Live Todo App Demo**](https://whatodos.vercel.app/login)
 
 ## Features
 
 - Create, Read, Update, and Delete (CRUD) Todos
 - User authentication
-- Mark todos as completed
+- Mark todos as completed or pending
 - Responsive UI
 - Persistent data with MongoDB
 
@@ -64,4 +62,45 @@ Before you begin, make sure you have the following installed:
     ```
     npm install
     ```
+4. **Navigate to the frontend folder and isntall frontend dependency**
 
+   ```
+   cd frontend
+   npm install
+   ```
+
+5. **Set up environment variables**
+
+   Create a .env file in the root directory amd add the following:
+   ```
+   MONGODB_URI={your mongodb string here}
+   PORT={your recommended port eg. 3000}
+   ```
+
+6. **Run the development server(backend)**
+
+   ```
+   npm start
+   ```
+
+7. **Run the development server(frontend)**
+
+   ```
+   npm start
+   ```
+
+8. **Open the app**
+
+   Visit http://localhost:3000 in your browser to view the app
+
+
+### Overview
+
+Login page for the todoApp, click the "tryMe!" button for guestLogin
+
+![Local Image](./images/todo_overview_login.png)
+
+
+User can add new todo simply by click the "+" sign and fill in all the data. Once completed, user can mark the todo as completed when hover over the todo. User can even change the details inside by just clicking at the targeted element or click "x" button to delete todo.
+
+![Local Image](./images/todo_overview_UI.png)
