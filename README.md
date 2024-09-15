@@ -47,7 +47,7 @@ Before you begin, make sure you have the following installed:
    Click the button to copy the clone command:
 
    ```
-   git clone https://github.com/your-username/todo-app.git
+   git clone https://github.com/0xKayWhy/todoApps.git
    ```
 
 2. **Navigate to the project directory**
