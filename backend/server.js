@@ -4,6 +4,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import usersRoutes from "./routes/users.js"
 import todosRoutes from "./routes/todos.js"
+import weatherRoutes from "./routes/weather.js"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -22,6 +23,7 @@ server.use(express.urlencoded({extended : true}))
 
 server.use("/api/v1/user",usersRoutes)
 server.use("/api/v1/todos", todosRoutes)
+server.use("/api/v1/weather", weatherRoutes)
 
 mongoose.connect(process.env.MONGODB_URI).then(()=> {
     console.log("MongoDB connected")

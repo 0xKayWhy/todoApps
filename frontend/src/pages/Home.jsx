@@ -27,7 +27,7 @@ export const Home = () => {
       }
     };
     fetchTodo();
-  }, [dispatch, user.token, sorting]);
+  }, [dispatch, user.token, sorting,logout]);
 
   //separate to 2 different status and display using same component
     const completedTodo = todo.length > 0 && todo.filter((td) => td.isCompleted === true);
